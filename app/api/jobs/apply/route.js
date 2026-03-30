@@ -1,10 +1,11 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
 export const runtime = 'nodejs'
 
 export async function POST(req) {
   try {
+    const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
+
     const body = await req.json()
     const { name, email, jobId, message, resumeBase64, phone } = body
 
@@ -31,7 +32,7 @@ export async function POST(req) {
     }
 
     // Send email notification to admin using Resend
-    if (process.env.RESEND_API_KEY && process.env.ADMIN_EMAIL) {
+    if (resend && process.env.ADMIN_EMAIL) {
       try {
         await resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL || 'noreply@resend.dev',
@@ -76,7 +77,7 @@ export async function POST(req) {
     }
 
     // Send confirmation email to candidate
-    if (process.env.RESEND_API_KEY) {
+    if (resend) {
       try {
         await resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL || 'noreply@resend.dev',

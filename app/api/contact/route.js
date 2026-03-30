@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(request) {
   try {
     const { first_name, last_name, user_email, user_phone, company_name, project_type, budget, message } = await request.json()
@@ -32,6 +30,8 @@ export async function POST(request) {
         { status: 500 }
       )
     }
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     // Send email to admin
     const adminEmailResult = await resend.emails.send({

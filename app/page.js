@@ -8,7 +8,31 @@ import Carousel from './components/Carousel'
 import FeaturedStories from './components/FeaturedStories'
 
 export default function Page() {
-  const animateStats = () => {}
+  const animateStats = () => {
+    const counters = document.querySelectorAll('.stat-number')
+
+    counters.forEach((counter) => {
+      const target = Number(counter.getAttribute('data-target') || '0')
+      if (!Number.isFinite(target)) return
+
+      const durationMs = 1200
+      const start = performance.now()
+
+      const update = (now) => {
+        const progress = Math.min((now - start) / durationMs, 1)
+        const eased = 1 - Math.pow(1 - progress, 3)
+        const value = Math.round(target * eased)
+        counter.textContent = `${value}`
+
+        if (progress < 1) {
+          requestAnimationFrame(update)
+        }
+      }
+
+      counter.textContent = '0'
+      requestAnimationFrame(update)
+    })
+  }
   const toggleFAQ = () => {}
   const selectBudget = () => {}
   const submitEnquiry = () => {}
@@ -282,17 +306,17 @@ export default function Page() {
           </div>
           <div className="stat-item">
             <span className="stat-icon">😊</span>
-            <span className="stat-number" data-target="98">0</span>
+            <span className="stat-number" data-target="450">0</span>
             <span className="stat-label">Happy Clients</span>
           </div>
           <div className="stat-item">
             <span className="stat-icon">☕</span>
-            <span className="stat-number" data-target="10000">0</span>
+            <span className="stat-number" data-target="10">0</span>
             <span className="stat-label">Coffee Cups</span>
           </div>
           <div className="stat-item">
             <span className="stat-icon">🏆</span>
-            <span className="stat-number" data-target="15">0</span>
+            <span className="stat-number" data-target="5">0</span>
             <span className="stat-label">Awards Won</span>
           </div>
         </div>

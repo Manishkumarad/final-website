@@ -141,8 +141,8 @@ export default function Page() {
             <a href="https://aawaasrealestate.in/" target="_blank" className="logo-item">🏢 Aawaas Real Estate</a>
             <a href="https://basslake.com/" target="_blank" className="logo-item">🏞️ Bass Lake</a>
             <a href="https://www.oakhurstgrillandwhiskey41.com/" target="_blank" className="logo-item">🥃 Oakhurst Grill & Whiskey 41</a>
-            <a href="https://www.wipro.com/" target="_blank" className="logo-item">💻 Wipro</a>
-            <a href="https://vercel.com/" target="_blank" className="logo-item">▲ Vercel</a>
+            <a href="https://www.wipro.com/" target="_blank" className="logo-item">💻 Scholorai</a>
+            <a href="https://vercel.com/" target="_blank" className="logo-item">▲ DCODHA</a>
             <a href="https://stripe.com/" target="_blank" className="logo-item">💳 Stripe</a>
             {/* Set 2 — exact duplicate for seamless infinite loop */}
             <a href="https://www.marriott.com/en-us/hotels/bhocy-courtyard-bhopal/overview/" target="_blank" className="logo-item">🏨 Courtyard by Marriott Bhopal</a>
@@ -151,8 +151,8 @@ export default function Page() {
             <a href="https://aawaasrealestate.in/" target="_blank" className="logo-item">🏢 Aawaas Real Estate</a>
             <a href="https://basslake.com/" target="_blank" className="logo-item">🏞️ Bass Lake</a>
             <a href="https://www.oakhurstgrillandwhiskey41.com/" target="_blank" className="logo-item">🥃 Oakhurst Grill & Whiskey 41</a>
-            <a href="https://www.wipro.com/" target="_blank" className="logo-item">💻 Wipro</a>
-            <a href="https://vercel.com/" target="_blank" className="logo-item">▲ Vercel</a>
+            <a href="https://www.wipro.com/" target="_blank" className="logo-item">💻 Scholorai</a>
+            <a href="https://vercel.com/" target="_blank" className="logo-item">▲ DCODHA</a>
             <a href="https://stripe.com/" target="_blank" className="logo-item">💳 Stripe</a>
           </div>
         </div>

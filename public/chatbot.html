@@ -267,7 +267,7 @@
         <div class="chat-header">
             <div class="chat-avatar">AI</div>
             <div class="chat-info">
-                <h3>NexusAI Assistant</h3>
+                <h3>deodha Assistant</h3>
                 <p>Always here to help</p>
             </div>
             <div class="status-indicator"></div>
@@ -296,6 +296,8 @@
                 <div class="quick-action" onclick="sendQuickMessage('I want to start a project')">Start Project</div>
                 <div class="quick-action" onclick="sendQuickMessage('Pricing information')">Pricing</div>
                 <div class="quick-action" onclick="sendQuickMessage('Contact support')">Contact</div>
+                <div class="quick-action" onclick="sendQuickMessage('Careers')">Careers</div>
+                <div class="quick-action" onclick="sendQuickMessage('Offices')">Offices</div>
             </div>
             <div class="input-container">
                 <input type="text" id="messageInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
@@ -314,6 +316,7 @@
             name: '',
             email: '',
             phone: '',
+            document: '',
             projectDetails: ''
         };
 
@@ -359,7 +362,7 @@
                 } else if (message.includes('price') || message.includes('cost') || message.includes('pricing')) {
                     return "Our pricing is project-based and depends on your specific requirements. We offer competitive rates with flexible payment options. Would you like to discuss your project needs so I can provide a more accurate estimate?";
                 } else if (message.includes('contact') || message.includes('support') || message.includes('talk')) {
-                    return "You can reach our team through: 📧 Email: deodhamanish059@gmail.com, 📱 Phone: +91 91351 12405, or fill out the contact form on our website. We typically respond within 24 hours!";
+                    return "You can reach our team through: 📧 Email: info@deodha.in, 📱 Phone: +91 91351 12405, or fill out the contact form on our website. We typically respond within 2 Minutes!";
                 } else {
                     return "I'm here to help! You can ask me about our services, start a project, get pricing information, or contact our team. What would you like to know?";
                 }

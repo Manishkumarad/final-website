@@ -2,10 +2,13 @@
 
 import Link from 'next/link'
 import React from 'react'
-import ChatWidget from './components/ChatWidget'
+import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import styles from './home.module.css'
 import Carousel from './components/Carousel'
 import FeaturedStories from './components/FeaturedStories'
+
+const ChatWidget = dynamic(() => import('./components/ChatWidget'), { ssr: false })
 
 const HERO_BG_IMAGES = [
   '/images/hero-section-1-bg.jpg',
@@ -17,6 +20,7 @@ const HERO_BG_IMAGES = [
 
 export default function Page() {
   const [heroBgIndex, setHeroBgIndex] = React.useState(0)
+  const [showChatWidget, setShowChatWidget] = React.useState(false)
 
   const animateStats = () => {
     const counters = document.querySelectorAll('.stat-number')
@@ -66,16 +70,36 @@ export default function Page() {
   }, [])
 
   React.useEffect(() => {
-    const timer = setInterval(() => {
-      setHeroBgIndex((prev) => (prev + 1) % HERO_BG_IMAGES.length)
-    }, 4200)
+    let timer
+    const startRotation = setTimeout(() => {
+      timer = setInterval(() => {
+        setHeroBgIndex((prev) => (prev + 1) % HERO_BG_IMAGES.length)
+      }, 4200)
+    }, 3500)
 
-    return () => clearInterval(timer)
+    return () => {
+      clearTimeout(startRotation)
+      if (timer) clearInterval(timer)
+    }
+  }, [])
+
+  React.useEffect(() => {
+    let cleanup
+
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(() => setShowChatWidget(true), { timeout: 2500 })
+      cleanup = () => window.cancelIdleCallback(id)
+    } else {
+      const id = setTimeout(() => setShowChatWidget(true), 1800)
+      cleanup = () => clearTimeout(id)
+    }
+
+    return cleanup
   }, [])
 
   return (
     <div className={styles.page}>
-      <ChatWidget />
+      {showChatWidget ? <ChatWidget /> : null}
 
       {/* POSITIONING BANNER */}
       <div className="positioning-banner">
@@ -84,16 +108,18 @@ export default function Page() {
 
       {/* HERO */}
       <section className={`hero ${styles.homeHero}`}>
-        <div className={styles.heroSlides} aria-hidden>
-          {HERO_BG_IMAGES.map((img, idx) => (
-            <div
-              key={img}
-              className={`${styles.heroSlide} ${idx === heroBgIndex ? styles.activeSlide : ''}`}
-              style={{
-                backgroundImage: `linear-gradient(100deg, rgba(2, 7, 20, 0.78), rgba(4, 16, 35, 0.62)), url('${img}')`,
-              }}
-            />
-          ))}
+        <div className={styles.heroBackground} aria-hidden>
+          <Image
+            key={HERO_BG_IMAGES[heroBgIndex]}
+            src={HERO_BG_IMAGES[heroBgIndex]}
+            alt=""
+            fill
+            priority={heroBgIndex === 0}
+            sizes="100vw"
+            quality={72}
+            className={styles.heroBgImage}
+          />
+          <div className={styles.heroOverlay} />
         </div>
         <div className="hero-inner">
           <div>

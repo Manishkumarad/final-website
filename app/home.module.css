@@ -20,6 +20,27 @@
 	pointer-events: none;
 }
 
+.heroBackground {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.heroBgImage {
+	object-fit: cover;
+	object-position: center center;
+	transform: scale(1);
+	transition: opacity 700ms ease;
+}
+
+.heroOverlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(100deg, rgba(2, 7, 20, 0.78), rgba(4, 16, 35, 0.62));
+}
+
 .heroSlide {
 	position: absolute;
 	inset: 0;

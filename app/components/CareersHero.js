@@ -7,17 +7,15 @@ export default function CareersHero(){
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 600], [0, -40])
 
-  const floatAnim = { y: [0, -10, 0], transition: { duration: 6, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' } }
-
   return (
-    <section className="careers-hero" style={{ minHeight: 420 }}>
-      <motion.div className="careers-bg careers-bg-scale" style={{ y, backgroundImage: `url(/images/career-heros.jpg)` }} aria-hidden />
+    <section className="careers-hero" style={{ minHeight: 560 }}>
+      <motion.div className="careers-bg careers-bg-scale" style={{ y, backgroundImage: `url(/images/career-hero-bg.jpg)` }} aria-hidden />
 
       <motion.div className="hero-gradient" animate={{ x: ['-10%', '10%'] }} transition={{ duration: 12, repeat: Infinity, repeatType: 'reverse', ease: 'linear' }} aria-hidden />
 
       <div className="careers-hero-inner">
         <div className="hero-left">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="hero-title">Careers at Deodha</motion.h1>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="hero-title" style={{ color: '#7dd3fc' }}>Career</motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.6 }} className="hero-sub">Join a high‑impact team building AI-first products and enterprise solutions.</motion.p>
 
           <motion.div className="hero-actions" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
@@ -29,20 +27,6 @@ export default function CareersHero(){
             <div className="stat">🚀 <strong>10+</strong> Projects Delivered</div>
             <div className="stat">🤖 <strong>AI-driven</strong> Products</div>
             <div className="stat">🌍 <strong>Global</strong> Clients</div>
-          </motion.div>
-        </div>
-
-        <div className="hero-right" aria-hidden>
-          <motion.div className="floating-ui ui-1" animate={floatAnim}>
-            <div className="ui-card code">const ai = 'smart'</div>
-          </motion.div>
-
-          <motion.div className="floating-ui ui-2" animate={{ y: [0, -8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}>
-            <div className="ui-card graph">📈 42% ↑</div>
-          </motion.div>
-
-          <motion.div className="floating-ui ui-3" animate={{ y: [0, -6, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}>
-            <div className="ui-card chat">💬 AI Assistant</div>
           </motion.div>
         </div>
       </div>

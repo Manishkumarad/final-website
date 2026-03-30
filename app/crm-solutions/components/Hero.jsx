@@ -4,6 +4,11 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className={styles.hero}>
+      <div className={styles.heroSlides} aria-hidden>
+        <div className={`${styles.heroSlide} ${styles.slideOne}`} />
+        <div className={`${styles.heroSlide} ${styles.slideTwo}`} />
+      </div>
+
       <div className={styles.heroContent}>
         <h1>
           Plan. Track. Close. <br />

@@ -6,8 +6,9 @@
   display: flex;
   align-items: center;
   background-repeat: no-repeat;
-  background-position: center right;
-  background-size: contain;
+  background-position: center center;
+  background-size: cover;
+  overflow: hidden;
   color: #fff;
 }
 
@@ -23,7 +24,7 @@
   position: relative;
   z-index: 2;
   max-width: 720px;
-  margin-left: 48px;
+  margin-left: clamp(0px, 2vw, 24px);
 }
 
 .hero-content h1 {
@@ -37,6 +38,6 @@
 .hero-content p { color: rgba(255,255,255,0.9); margin-bottom: 12px; }
 
 @media (max-width: 900px) {
-  .hero-section { padding: calc(var(--nav-h,72px) + 120px) 6%; min-height: 480px; background-size: cover; }
-  .hero-content { margin-left: 20px; }
+  .hero-section { padding: calc(var(--nav-h,72px) + 120px) 6%; min-height: 480px; background-size: cover; background-position: center center; }
+  .hero-content { margin-left: 0; }
 }

@@ -97,7 +97,7 @@ export default function SaaSDevelopment() {
       <section className="services" id="features">
         <div className="section-head">
           <div className="section-label">SaaS Features</div>
-          <h2 className="section-title">Enterprise-Grade SaaS Capabilities</h2>
+          <h2 className="section-title"><span style={{ color: '#0f172a' }}>Enterprise-Grade SaaS Capabilities</span></h2>
           <p className="section-sub">Everything you need to build and scale a successful SaaS product</p>
         </div>
         <div className="services-grid">
@@ -144,7 +144,7 @@ export default function SaaSDevelopment() {
       <section className="saas-models">
         <div className="section-head center">
           <div className="section-label">Business Models</div>
-          <h2 className="section-title">Flexible SaaS Pricing Strategies</h2>
+          <h2 className="section-title"><span style={{ color: '#0f172a' }}>Flexible SaaS Pricing Strategies</span></h2>
           <p className="section-sub">Choose the right pricing model for your target market and business goals</p>
         </div>
 
@@ -212,7 +212,7 @@ export default function SaaSDevelopment() {
       <section className="tech-stack">
         <div className="section-head center">
           <div className="section-label">Technology</div>
-          <h2 className="section-title">SaaS Development Stack</h2>
+          <h2 className="section-title"><span style={{ color: '#0f172a' }}>SaaS Development Stack</span></h2>
           <p className="section-sub">Modern technologies that power scalable, secure SaaS applications</p>
         </div>
 
@@ -256,7 +256,7 @@ export default function SaaSDevelopment() {
       <section className="process-timeline" id="process">
         <div className="section-head center">
           <div className="section-label">Development</div>
-          <h2 className="section-title">SaaS Development Process</h2>
+          <h2 className="section-title"><span style={{ color: '#0f172a' }}>SaaS Development Process</span></h2>
           <p className="section-sub">Systematic approach to building successful SaaS products</p>
         </div>
 

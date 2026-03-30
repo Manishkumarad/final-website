@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-import gsap from "../utils/gsap";
+import React from "react";
 
 const USE_CASES = [
   { title: "Finance Automation", items: ["Invoice intake & OCR", "Payment reconciliation"] },
@@ -10,41 +9,16 @@ const USE_CASES = [
 ];
 
 export default function UseCases() {
-  const ref = useRef();
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const ctx = gsap.context(() => {
-      const panels = gsap.utils.toArray(".usecases .panel");
-      if (panels.length <= 1) return;
-
-      gsap.to(panels, {
-        xPercent: -100 * (panels.length - 1),
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".usecases",
-          pin: true,
-          scrub: 1,
-          snap: 1 / (panels.length - 1),
-          end: () => "+=" + (panels.length * 1000),
-        },
-      });
-    }, ref);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <div ref={ref} className="usecases horizontal-scroll overflow-hidden py-4">
-      <div className="flex gap-6">
+    <div className="usecases">
+      <div className="usecases-grid">
         {USE_CASES.map((u, i) => (
-          <div key={i} className="panel min-w-[320px] p-6 card">
-            <h4 className="font-semibold mb-2 text-white">{u.title}</h4>
-            <ul className="text-sm text-muted space-y-1">
-              {u.items.map((it, idx) => <li key={idx}>{it}</li>)}
+          <article key={i} className="usecase-card card">
+            <h4 className="usecase-title">{u.title}</h4>
+            <ul className="usecase-list">
+              {u.items.map((it, idx) => <li key={idx} className="usecase-item">{it}</li>)}
             </ul>
-          </div>
+          </article>
         ))}
       </div>
     </div>

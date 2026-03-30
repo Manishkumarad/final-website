@@ -7,7 +7,17 @@ import styles from './home.module.css'
 import Carousel from './components/Carousel'
 import FeaturedStories from './components/FeaturedStories'
 
+const HERO_BG_IMAGES = [
+  '/images/hero-section-1-bg.jpg',
+  '/images/hero-section-2-bg.jpg',
+  '/images/hero-section-3-bg.jpg',
+  '/images/hero-section-4-bg.jpg',
+  '/images/hero-section-5-bg.jpg',
+]
+
 export default function Page() {
+  const [heroBgIndex, setHeroBgIndex] = React.useState(0)
+
   const animateStats = () => {
     const counters = document.querySelectorAll('.stat-number')
 
@@ -51,6 +61,16 @@ export default function Page() {
     if (statsSection) {
       observer.observe(statsSection)
     }
+
+    return () => observer.disconnect()
+  }, [])
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroBgIndex((prev) => (prev + 1) % HERO_BG_IMAGES.length)
+    }, 4200)
+
+    return () => clearInterval(timer)
   }, [])
 
   return (
@@ -63,13 +83,26 @@ export default function Page() {
       </div>
 
       {/* HERO */}
-      <section className="hero">
-        <div className="hero-bg-grid"></div>
-        <div className="hero-blob"></div>
+      <section className={`hero ${styles.homeHero}`}>
+        <div className={styles.heroSlides} aria-hidden>
+          {HERO_BG_IMAGES.map((img, idx) => (
+            <div
+              key={img}
+              className={`${styles.heroSlide} ${idx === heroBgIndex ? styles.activeSlide : ''}`}
+              style={{
+                backgroundImage: `linear-gradient(100deg, rgba(2, 7, 20, 0.78), rgba(4, 16, 35, 0.62)), url('${img}')`,
+              }}
+            />
+          ))}
+        </div>
         <div className="hero-inner">
           <div>
-            <div className="hero-badge fade-up"><span className="badge-dot"></span> AI-Powered Development Agency</div>
-            <h1 className="fade-up delay-1">We build AI-powered <em>CRM and Digital Engineering systems</em></h1>
+            <div className="hero-badge fade-up"><span className="badge-dot"></span> AI Strategy, Build & Automation</div>
+            <h1 className="fade-up delay-1" style={{ lineHeight: 1.08 }}>
+              <span style={{ color: '#93c5fd' }}>Building the Operating System</span>
+              <br />
+              <span style={{ color: '#e6f6ff' }}>for Modern Businesses.</span>
+            </h1>
             <p className="hero-sub fade-up delay-2">We design, build, and automate web applications and digital products — powered by cutting-edge AI to launch faster and scale further.</p>
             <div className="hero-actions fade-up delay-3">
               <Link href="/book-demo" className="btn-primary">Book a demo</Link>
@@ -91,41 +124,6 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="hero-visual fade-up delay-2">
-            <div className="float-pill pill-1"><span className="pill-icon">⚡</span> Deploying in 3s…</div>
-            <div className="mockup-card">
-              <div className="mockup-header">
-                <div className="mockup-avatar">NX</div>
-                <div>
-                  <div className="mockup-title">Project Dashboard</div>
-                  <div className="mockup-sub">Live intelligence feed</div>
-                </div>
-              </div>
-              <div className="mockup-metrics">
-                <div className="metric-box">
-                  <div className="metric-val" style={{color:'var(--highlight)'}}>$51B</div>
-                  <div className="metric-lbl">Spend optimized</div>
-                  <div className="metric-up">↑ 14.2%</div>
-                </div>
-                <div className="metric-box">
-                  <div className="metric-val">11M</div>
-                  <div className="metric-lbl">Hours automated</div>
-                  <div className="metric-up" style={{color:'#22c55e'}}>↑ 8.9%</div>
-                </div>
-              </div>
-              <div className="mockup-bar-label">Weekly AI task volume</div>
-              <div className="bars">
-                <div className="bar" style={{height:'30%'}}></div>
-                <div className="bar" style={{height:'55%'}}></div>
-                <div className="bar" style={{height:'45%'}}></div>
-                <div className="bar" style={{height:'70%'}}></div>
-                <div className="bar active" style={{height:'90%'}}></div>
-                <div className="bar" style={{height:'65%'}}></div>
-                <div className="bar" style={{height:'80%'}}></div>
-              </div>
-            </div>
-            <div className="float-pill pill-2"><span className="pill-icon">✅</span> AI workflow complete</div>
-          </div>
         </div>
       </section>
 
@@ -163,8 +161,8 @@ export default function Page() {
   {/* CLIENT SHOWCASE */}
 <section className="client-showcase">
   <div className="section-head center">
-    <div className="section-label">Client Projects</div>
-    <h2 className="section-title">Recent Client Success Stories</h2>
+    <div className="section-label" style={{ color: '#0284c7' }}>Client Projects</div>
+    <h2 className="section-title"><span style={{ color: '#0f172a' }}>Recent Client Success Stories</span></h2>
     <p className="section-sub">
       Explore our latest work with industry-leading brands
     </p>
@@ -178,7 +176,6 @@ export default function Page() {
         className="client-image"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1566073771259-6a8506099945')" }}
       >
-        <div className="client-overlay">🏨</div>
       </div>
       <div className="client-content">
         <h3>Courtyard by Marriott Bhopal</h3>
@@ -198,7 +195,6 @@ export default function Page() {
         className="client-image"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0')" }}
       >
-        <div className="client-overlay">🍽️</div>
       </div>
       <div className="client-content">
         <h3>Branches Grill & Cafe</h3>
@@ -218,7 +214,6 @@ export default function Page() {
         className="client-image"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4')" }}
       >
-        <div className="client-overlay">🏞️</div>
       </div>
       <div className="client-content">
         <h3>Bass Lake</h3>
@@ -238,7 +233,6 @@ export default function Page() {
         className="client-image"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1514933651103-005eec06c04b')" }}
       >
-        <div className="client-overlay">🥃</div>
       </div>
       <div className="client-content">
         <h3>Oakhurst Grill & Whiskey 41</h3>
@@ -258,7 +252,6 @@ export default function Page() {
         className="client-image"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745')" }}
       >
-        <div className="client-overlay">🎯</div>
       </div>
       <div className="client-content">
         <h3>The N Zone</h3>
@@ -278,7 +271,6 @@ export default function Page() {
         className="client-image"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1560518883-ce09059eeffa')" }}
       >
-        <div className="client-overlay">🏢</div>
       </div>
       <div className="client-content">
         <h3>Aawaas Real Estate</h3>
@@ -340,7 +332,7 @@ export default function Page() {
       <section className="process-timeline">
         <div className="section-head center">
           <div className="section-label">Our Process</div>
-          <h2 className="section-title">How We Transform Your Ideas Into Reality</h2>
+          <h2 className="section-title"><span style={{ color: '#0f172a' }}>How We Transform Your Ideas Into Reality</span></h2>
           <p className="section-sub">A proven 4-step process that delivers exceptional results every time</p>
         </div>
         
@@ -449,8 +441,8 @@ export default function Page() {
       {/* TECHNOLOGY STACK */}
       <section className="tech-stack">
         <div className="section-head center">
-          <div className="section-label">Technologies</div>
-          <h2 className="section-title">We Work With Cutting-Edge Technologies</h2>
+          <div className="section-label" style={{ color: '#0284c7' }}>Technologies</div>
+          <h2 className="section-title"><span style={{ color: '#0f172a' }}>We Work With Cutting-Edge Technologies</span></h2>
           <p className="section-sub">Leveraging the best tools to build powerful, scalable solutions</p>
         </div>
         
@@ -494,7 +486,7 @@ export default function Page() {
       <section className="faq-section">
         <div className="section-head center">
           <div className="section-label">Questions</div>
-          <h2 className="section-title">Frequently Asked Questions</h2>
+          <h2 className="section-title"><span style={{ color: '#0f172a' }}>Frequently Asked Questions</span></h2>
           <p className="section-sub">Everything you need to know about working with us</p>
         </div>
         
@@ -577,7 +569,7 @@ export default function Page() {
       <section className="what-we-build">
         <div className="section-head center">
           <div className="section-label">What We Build</div>
-          <h2 className="section-title">End-to-end AI-powered digital solutions.</h2>
+          <h2 className="section-title"><span style={{ color: '#0f172a' }}>End-to-end AI-powered digital solutions.</span></h2>
           <p className="section-sub">From concept to deployment — we blend design, engineering, and AI automation into products that grow with your business.</p>
         </div>
 
@@ -633,7 +625,7 @@ export default function Page() {
       <section className="testimonials">
     <div className="section-head center">
       <div className="section-label">What Clients Say</div>
-      <h2 className="section-title">Trusted by enterprise teams</h2>
+      <h2 className="section-title"><span style={{ color: '#0f172a' }}>Trusted by enterprise teams</span></h2>
       <p className="section-sub">Work that moves the needle — stories from product leaders and ops teams.</p>
     </div>
 

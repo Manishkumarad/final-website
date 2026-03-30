@@ -10,16 +10,17 @@ const CARDS = [
 
 export default function AutomationCards() {
   return (
-    <div className="container">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="automation-grid">
         {CARDS.map((c, i) => (
-          <div key={i} className="card p-6 rounded-2xl hover:shadow-glow transform hover:-translate-y-1 transition">
-            <div className="mb-3 text-brand-400 text-xl">●</div>
-            <h4 className="font-semibold mb-2 text-white">{c.title}</h4>
-            <p className="text-sm text-muted">{c.body}</p>
-          </div>
+          <article key={i} className="automation-card card">
+            <div className="automation-top">
+              <span className="automation-index">{String(i + 1).padStart(2, "0")}</span>
+              <span className="automation-dot" aria-hidden />
+            </div>
+            <h4 className="automation-title">{c.title}</h4>
+            <p className="automation-body">{c.body}</p>
+          </article>
         ))}
-      </div>
     </div>
   );
 }

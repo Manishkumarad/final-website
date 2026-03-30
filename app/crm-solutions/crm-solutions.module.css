@@ -42,12 +42,63 @@
 
 .hero {
   position: relative;
-  min-height: 90vh;
+  min-height: 86vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 300px 60px 0;
-  background: url('/images/crm-hero.jpg') center/cover no-repeat;
+  padding: calc(var(--nav-h, 72px) + 100px) 60px 130px;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+.heroSlides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.heroSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: scale(1.03);
+}
+
+.slideOne {
+  background-image: url('/images/crm-hero-bg-1.jpg');
+  animation: crmHeroCrossfade 16s ease-in-out infinite;
+}
+
+.slideTwo {
+  background-image: url('/images/hero-section-4-bg.jpg');
+  animation: crmHeroCrossfade 16s ease-in-out infinite;
+  animation-delay: 8s;
+}
+
+@keyframes crmHeroCrossfade {
+  0% {
+    opacity: 0;
+    transform: scale(1.035);
+  }
+  8% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  42% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.035);
+  }
 }
 
 .hero::before {
@@ -55,6 +106,7 @@
   position: absolute;
   inset: 0;
   background: rgba(2, 6, 23, 0.75);
+  z-index: 1;
 }
 
 .hero::after {
@@ -66,6 +118,7 @@
     rgba(2, 6, 23, 0.2),
     rgba(2, 6, 23, 0.9)
   );
+  z-index: 1;
 }
 
 .heroContent {
@@ -194,7 +247,8 @@
 
   .hero {
     min-height: 78vh;
-    padding: 0 20px;
+    padding: calc(var(--nav-h, 72px) + 52px) 20px 72px;
+    margin-bottom: 18px;
   }
 
   .heroContent h1 {

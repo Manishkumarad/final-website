@@ -66,14 +66,25 @@ export default function AIHero() {
   }, []);
 
   return (
-    <header ref={rootRef} className="hero py-24 bg-gradient-to-b from-[#070712] to-[#0b0d18] relative z-20">
-      <div className="hero-bg absolute inset-0 pointer-events-none opacity-30" />
+    <header
+      ref={rootRef}
+      className="hero ai-automation-hero relative z-20"
+      style={{
+        paddingTop: "calc(var(--nav-h) + 96px)",
+        paddingBottom: "104px",
+        backgroundImage:
+          "linear-gradient(110deg, rgba(2, 8, 20, 0.86), rgba(2, 6, 18, 0.78)), url('/images/ai-automation-herobg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="hero-bg absolute inset-0 pointer-events-none opacity-40" />
       <div className="container relative mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8">
         <div className="hero-left space-y-6">
-          <h1 className="hero-title text-4xl md:text-5xl font-bold">AI Automation for the Enterprise</h1>
+          <h1 className="hero-title text-4xl md:text-5xl font-bold" style={{ color: '#93c5fd' }}>AI Automation for the Enterprise</h1>
           <p className="hero-sub max-w-xl text-muted">Accelerate operations, reduce costs, and improve compliance with end-to-end AI-driven workflows.</p>
 
-          <div className="flex gap-4 mt-6">
+          <div className="hero-actions">
             <a href="#contact" className="btn btn-primary">Contact Sales</a>
             <a href="#book-demo" className="btn btn-outline">Request Demo</a>
           </div>

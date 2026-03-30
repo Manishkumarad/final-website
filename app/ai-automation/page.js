@@ -14,36 +14,35 @@ export default function AIAutomationPage() {
     <main className={`ai-automation-page bg-dark text-white ${styles.page}`}>
       <AIHero />
 
-      <section className="container mx-auto py-20">
+      <section className={`container mx-auto ${styles.leadSection}`}>
         <ProblemSolution />
       </section>
 
-      <section className="container mx-auto py-12">
-        <h2 className="section-title">What We Automate</h2>
+      <section className={`container mx-auto ${styles.section} ${styles.automationSection}`}>
+        <h2 className={`section-title ${styles.sectionHeading} ${styles.centerHeading}`}>What We Automate</h2>
         <AutomationCards />
       </section>
 
-      <section className="container mx-auto py-12">
-        <h2 className="section-title">Use Cases</h2>
+      <section className={`container mx-auto ${styles.section}`}>
+        <h2 className={`section-title ${styles.sectionHeading} ${styles.centerHeading}`}>Use Cases</h2>
         <UseCases />
       </section>
 
-      <section className="container mx-auto py-12">
-        <h2 className="section-title">How It Works</h2>
+      <section className={`container mx-auto ${styles.section}`}>
         <ProcessSteps />
       </section>
 
       
 
-      <section className="container mx-auto py-12">
+      <section className={`container mx-auto ${styles.section}`}>
         <Results />
       </section>
 
-      <section className="container mx-auto py-12">
+      <section id="book-demo" className={`container mx-auto ${styles.section}`}>
         <DemoSection />
       </section>
 
-      <section className="container mx-auto py-20">
+      <section id="contact" className={`container mx-auto ${styles.ctaSection}`}>
         <CTA />
       </section>
     </main>
